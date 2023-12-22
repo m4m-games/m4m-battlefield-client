@@ -1,0 +1,1 @@
+{"shader":"diffuse.shader.json","srcshader":"Gd3d/Diffuse","queue":0,"mapUniform":{"_MainColor":{"type":3,"value":"(0.245283,0.245283,0.245283,1)"},"_MainTex":{"type":0,"value":"bai.imgdesc.json"},"_AlphaCut":{"type":1,"value":0.5}},"InstanceID":"176058"}

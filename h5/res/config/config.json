@@ -1,0 +1,41 @@
+{
+    "sharkWhiteList": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        9
+    ],
+    "roleBspeed": 50,
+    "roleStepSpeed": 20,
+    "totalEdibleGold": 0.5,
+    "totalSurvivalBonus": 0.5,
+    "saveShark": [1, 1, 2, 3, 5],
+    "freeGoldTime":999,
+    "freeDiamondTime":999,
+    "videoGetGold": {
+        "android":100,
+        "ios":100
+    },
+    "videoGetDiamond": {
+        "android":1,
+        "ios":3
+    },
+    "shareTime":1,
+    "MaxShare": 3,
+    "shareItemID": [11001, 11002, 11003, 11004],
+	"sharegiftpack": [{"sharkType":4,"giftID":30001},{"sharkType":5,"giftID":30002},{"sharkType":9,"giftID":30003}],
+    "descTip": "备注: MaxShare  邀请好友数量    shareItemID 分享邀新 奖励ID ",
+    "giftRate": {
+        "share": 3,
+        "task": 3,
+        "signin": 3,
+        "sharkTask": 3,
+		"choujiang": 3,
+		"jiesuan": 3,
+        "desc": "(这是个备注)看视频领取奖励倍率、share为邀请分享系统、task为任务系统、signin为七日登录系统、choujiang为幸运抽奖、jiesuan为结算奖励"
+    },
+    "resVersionStr": "0.8.76"
+}

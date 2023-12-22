@@ -1,0 +1,1 @@
+{"test.atlas.json":"{\"t\":\"test.imgdesc.json\",\"w\":442,\"h\":277,\"s\":[[[\"inputbg\"],1,1,440,75],[[\"rect1\"],1,77,440,75],[[\"button1\"],1,153,302,123],[[\"gamebg\"],304,153,11,11]]}","test.imgdesc.json":"{\"name\":\"test.png\",\"filterMode\":\"Bilinear\",\"format\":\"RGBA\",\"mipmap\":false,\"wrap\":\"none\",\"premultiplyAlpha\":false}"}

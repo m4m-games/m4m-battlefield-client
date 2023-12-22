@@ -1,0 +1,1 @@
+{"shader":"transparent.shader.json","srcshader":"m4m/Transparent","queue":0,"mapUniform":{"_MainTex":{"type":0,"value":"jinzhu.imgdesc.json"},"_Alpha":{"type":1,"value":0.312000006437302},"_LightmapTex":{"type":0,"value":"Lightmap-0_comp_light.imgdesc.json"}},"InstanceID":"-3002"}

@@ -1,0 +1,24 @@
+    {
+        //本配置仅作为 本地工具（vs code 等）编写项目引用 .d.ts
+        //项目编译 和 发布 还需通过引擎web编辑器完成
+        "compilerOptions": {
+            "module": "system",
+            "target": "es5",
+            "sourceMap": false,
+            "outFile": "../../lib/node_modules/@types/gameEvent.js",
+            "removeComments": false,
+            "declaration": true,
+            "watch": false,
+            "experimentalDecorators": true,
+            "lib": [
+                "dom",
+                "es2015.promise",
+                "es2015"
+            ],
+            "types": [
+                "../../lib/node_modules/@types/engine",
+                "../../lib/node_modules/@types/gameUtil"
+            ],
+            "skipLibCheck": true
+        }
+    }

@@ -1,0 +1,1 @@
+{"shader":"transparent.shader.json","srcshader":"Gd3d/Transparent","queue":0,"mapUniform":{"_MainTex":{"type":0,"value":"jinzhu.imgdesc.json"},"_Alpha":{"type":1,"value":0.25}},"InstanceID":"6028"}
