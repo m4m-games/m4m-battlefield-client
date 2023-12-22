@@ -42,7 +42,6 @@ export class ConnectWalletTonkeeper {
     public tid: string = '1';
     private static _instance: ConnectWalletTonkeeper;
     public init() {
-        apis.Instance.getCurreny();
         this.TonWeb = window["TonWeb"];
         this.Telegram = window["Telegram"];
         this.Telegram.WebApp.initData;
@@ -55,6 +54,11 @@ export class ConnectWalletTonkeeper {
         }
     }
 
+
+    /**
+     * 登录
+     * @param fun 回调
+     */
     public async loginAccount(fun: Function) {
         const walletConnectionSource = {
             universalLink: "https://app.tonkeeper.com/ton-connect",
@@ -93,35 +97,47 @@ export class ConnectWalletTonkeeper {
     private handleLogout() {
         this.TonConnectUI.disconnect();
     }
+    
+
+    public async send() {
+        let _tx = {
+            value: "0.001",
+            to: "EQAHlOFkEWgc4NcS5TK7z08u75GdFkXL6p5kx_mjOQONrybr",
+            state_init: undefined,
+            payload: undefined
+        }
+        return await this.sendTransaction(_tx, "Transfer token");
+    }
 
 
 
-    private openHelp(url) {
-        if (ConnectWalletTonkeeper.element == null) {
-            ConnectWalletTonkeeper.element = document.createElement("div");
-            m4m.framework.sceneMgr.app.container.append(ConnectWalletTonkeeper.element);
-            ConnectWalletTonkeeper.element.style.width = "100%";
-            ConnectWalletTonkeeper.element.style.height = "100%";
-            ConnectWalletTonkeeper.element.style.position = "absolute";
-            ConnectWalletTonkeeper.element.style.left = "50%";
-            ConnectWalletTonkeeper.element.style.top = "50%";
-            ConnectWalletTonkeeper.element.style.transform = "translate(-50%, -50%)";
-            ConnectWalletTonkeeper.element.innerHTML = `
-            <div style="width: 100%;height: 25px;background: #ffffff">
-                <div style="float: left;margin-left: 8px;">Tonkeeper</div>
-                <div id="closeIframeBtn" style="float: right;margin-right: 8px;">X</div>
-            </div>
-            <iframe src="${url}" style="width: calc(100% - 4px);height: calc(100% - 25px)"></iframe>
-            `;
-            setTimeout(() => {
-                let div = document.getElementById("closeIframeBtn");
-                div.addEventListener("click", () => {
-                    ConnectWalletTonkeeper.element = null;
-                    let childNode = m4m.framework.sceneMgr.app.container.childNodes[m4m.framework.sceneMgr.app.container.childNodes.length - 1];
-                    m4m.framework.sceneMgr.app.container.removeChild(childNode);
-                    // console.error("关闭子窗体");
-                })
-            }, 1);
+
+    public async sendTransaction(tx: { value: string; to: string; state_init?: string; payload?: string; }, text: string) {
+        try {
+            let num = this.TonWeb.utils.toNano(tx.value).toString()
+            const _tx = {
+                validUntil: Date.now() + 5 * 60 * 1000,
+                network: CHAIN.MAINNET,
+                messages: [
+                    {
+                        address: tx.to,
+                        amount: num,
+                        stateInit: tx.state_init || undefined,
+                        payload: tx.payload || undefined,
+                        text: text,
+                    },
+                ],
+            }
+            const resp = await this.TonConnectUI.sendTransaction(_tx);
+            console.error("tonkeeper resp: ", resp.boc);
+            if (ConnectWalletTonkeeper.element != null) {
+                ConnectWalletTonkeeper.element = null
+                let childNode = m4m.framework.sceneMgr.app.container.childNodes[m4m.framework.sceneMgr.app.container.childNodes.length - 1];
+                m4m.framework.sceneMgr.app.container.removeChild(childNode);
+            }
+            return resp
+        } catch (e) {
+            console.error("error", e);
         }
     }
 
@@ -326,45 +342,6 @@ export class ConnectWalletTonkeeper {
         for (i2 = 0; i2 < len; i2++)
             s2.push(String.fromCharCode(arr[i2]));
         return btoa(s2.join(""));
-    }
-
-    public async sendTransaction(tx: { value: string; to: string; state_init?: string; payload?: string; }, text: string) {
-        try {
-            let num = this.TonWeb.utils.toNano(tx.value).toString()
-            const _tx = {
-                validUntil: Date.now() + 5 * 60 * 1000,
-                network: CHAIN.MAINNET,
-                messages: [
-                    {
-                        address: tx.to,
-                        amount: num,
-                        stateInit: tx.state_init || undefined,
-                        payload: tx.payload || undefined,
-                        text: text,
-                    },
-                ],
-            }
-            const resp = await this.TonConnectUI.sendTransaction(_tx);
-            console.error("tonkeeper resp: ", resp.boc);
-            if (ConnectWalletTonkeeper.element != null) {
-                ConnectWalletTonkeeper.element = null
-                let childNode = m4m.framework.sceneMgr.app.container.childNodes[m4m.framework.sceneMgr.app.container.childNodes.length - 1];
-                m4m.framework.sceneMgr.app.container.removeChild(childNode);
-            }
-            return resp
-        } catch (e) {
-            console.error("error", e);
-        }
-    }
-
-    public async send() {
-        let _tx = {
-            value: "0.001",
-            to: "EQAHlOFkEWgc4NcS5TK7z08u75GdFkXL6p5kx_mjOQONrybr",
-            state_init: undefined,
-            payload: undefined
-        }
-        return await this.sendTransaction(_tx, "Transfer token");
     }
 }
 

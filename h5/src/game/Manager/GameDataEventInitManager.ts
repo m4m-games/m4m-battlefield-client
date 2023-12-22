@@ -5,7 +5,6 @@ import { MeleeGameManager } from "./MeleeGameManager";
 import { GamingManager } from "./GamingManager";
 import { GameResultManager } from "./GameResultManager";
 import { EnterGameManager } from "./EnterGameManager";
-import { ConnectWalletManager } from "../Core/blockchain/ConnectWalletManager";
 import { ConnectWalletTonkeeper } from "../Core/blockchain/ConnectWalletTonkeeper";
 
 export class GameDataEventInitManager {
@@ -21,7 +20,7 @@ export class GameDataEventInitManager {
         GameResultManager.Instance.init();
 
         EnterGameManager.Instance.init();
-        ConnectWalletManager.Instance.init();
+        
         ConnectWalletTonkeeper.Instance.init();
     }
 }

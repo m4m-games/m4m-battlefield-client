@@ -50,16 +50,6 @@ export class apis {
         return true;
     };
 
-    public async getCurreny() {
-        // const url = 'https://show-svc.meta4d.me:4439/SelectUserCurrency';
-        const url = 'http://192.168.15.82:9000/SelectUserCurrency';
-        let res = await this.axios.post(url, { playerName: '2' });
-        console.error(res);
-        if (res.error) { return false }
-        return res.data.data;
-    }
-
-
     public async getBindResult(params: IGetBindResultParams) {
         const url = `${this.API_HOST}/bind-attr?tid=${params.tid}`;
         const res = await this.axios.get(url);
